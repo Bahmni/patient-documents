@@ -23,6 +23,10 @@ spec:
       containers:
         - image: "{{ .Values.image.repository }}/{{ .Values.image.name }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           name: {{ .Chart.Name }}
+          envFrom:
+            - configMapRef:
+                name: {{ .Chart.Name }}-config
+                optional: false
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - mountPath: /usr/share/nginx/html/document_images
@@ -31,4 +35,4 @@ spec:
       volumes:
         - name: openmrs-document-images
           persistentVolumeClaim:
-            claimName: openmrs-document-images-pvc
+            claimName: {{ .Values.volumes.claimName }}

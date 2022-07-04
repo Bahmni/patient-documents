@@ -19,3 +19,9 @@ autoscaling:
   #  maxReplicas: 5
   #  targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
+
+config:
+  OPENMRS_HOST: openmrs
+
+volumes:
+  claimName: openmrs-document-images-pvc
