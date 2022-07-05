@@ -3,7 +3,7 @@ name: Build and Publish
 on:
   push:
     branches: 
-      - BAH-1903
+      - main
   
 jobs:
   build_publish:
