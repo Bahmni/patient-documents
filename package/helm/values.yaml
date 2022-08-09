@@ -1,3 +1,8 @@
+global:
+  nodeSelector: {}
+  affinity: {}
+  tolerations: {}
+
 replicaCount: 1
 
 metadata:
@@ -25,3 +30,7 @@ config:
 
 volumes:
   claimName: openmrs-document-images-pvc
+
+nodeSelector: {}
+affinity: {}
+tolerations: {}
