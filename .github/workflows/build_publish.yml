@@ -2,9 +2,11 @@ name: Build and Publish
 
 on:
   push:
-    branches: 
+    branches:
       - main
-  
+      - 'release-*'
+    tags:
+      - '[0-9]+.[0-9]+.[0-9]+'
 jobs:
   build_publish:
     name: Build and Publish
@@ -14,22 +16,17 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-      - name: Verify app version
+      - name: Set artifact version
         run: |
-          APP_VERSION=$(cat package/.appversion)
-          if [ $(git tag -l "$APP_VERSION") ]; then 
-            echo "App version $APP_VERSION already released. Please update app version in package/.appversion to represent next major/minor/patch increment"
-            exit 1
-          else
-            echo "setting artifact version to $(echo $APP_VERSION-${{github.run_number}})"
-            echo "ARTIFACT_VERSION=$(echo $APP_VERSION-${{github.run_number}})" >> $GITHUB_ENV
-          fi
+          wget -q https://raw.githubusercontent.com/Bahmni/bahmni-infra-utils/main/setArtifactVersion.sh && chmod +x setArtifactVersion.sh
+          ./setArtifactVersion.sh
+          rm setArtifactVersion.sh
       - name: Setup Node.js 16.x
         uses: actions/setup-node@v1
         with:
           node-version: "16.x"
       - name: Docker - Login
-        uses: docker/login-action@v1 
+        uses: docker/login-action@v1
         with:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
