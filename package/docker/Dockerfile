@@ -2,7 +2,7 @@ FROM nginx:1.23.1-alpine
 
 
 RUN apk update
-RUN apk add curl
+RUN apk add curl acl
 
 # Set up the apk repository for stable nginx packages
 RUN printf "%s%s%s%s\n" \
@@ -20,3 +20,7 @@ RUN apk add nginx-module-njs@nginx
 COPY default.conf.template /etc/nginx/templates/
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY njs.js /etc/nginx/conf.d
+
+# Create Document Images Directory and modify access mode for other users
+RUN mkdir -p /usr/share/nginx/html/document_images
+RUN setfacl -d -m o::rx /usr/share/nginx/html/document_images/
