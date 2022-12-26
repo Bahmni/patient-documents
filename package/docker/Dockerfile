@@ -23,4 +23,4 @@ COPY njs.js /etc/nginx/conf.d
 
 # Create Document Images Directory and modify access mode for other users
 RUN mkdir -p /usr/share/nginx/html/document_images
-RUN setfacl -d -m o::rx /usr/share/nginx/html/document_images/
+RUN setfacl -d -m o::rx -m g::rx /usr/share/nginx/html/document_images/
