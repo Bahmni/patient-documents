@@ -21,6 +21,10 @@ server {
         rewrite ^(.*) https://$host/openmrs/auth?requested_document=$uri permanent;
     }
 
+    location /uploaded_results {
+        rewrite ^(.*) https://$host/openmrs/auth?requested_document=$uri permanent;
+    }
+
     location = /openmrs/auth {
         subrequest_output_buffer_size 200000;
         client_body_buffer_size 200000;
