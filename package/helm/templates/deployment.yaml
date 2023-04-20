@@ -58,8 +58,13 @@ spec:
           volumeMounts:
             - mountPath: /usr/share/nginx/html/document_images
               name: openmrs-document-images
+            - mountPath: /usr/share/nginx/html/uploaded_results
+              name: bahmni-uploaded-results
       restartPolicy: Always
       volumes:
         - name: openmrs-document-images
           persistentVolumeClaim:
             claimName: {{ .Values.volumes.claimName }}
+        - name: bahmni-uploaded-results
+          persistentVolumeClaim:
+            claimName: bahmni-uploaded-results-pvc
