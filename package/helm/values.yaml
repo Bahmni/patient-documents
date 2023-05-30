@@ -2,7 +2,7 @@ global:
   nodeSelector: {}
   affinity: {}
   tolerations: {}
-  TZ: UTC
+  TZ: "UTC"
 
 replicaCount: 1
 
