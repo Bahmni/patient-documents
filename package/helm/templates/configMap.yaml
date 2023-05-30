@@ -4,3 +4,4 @@ metadata:
   name: {{ .Chart.Name }}-config
 data:
   OPENMRS_HOST: "{{ .Values.config.OPENMRS_HOST }}"
+  TZ: "{{ .Values.global.TZ }}"
