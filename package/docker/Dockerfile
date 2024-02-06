@@ -24,3 +24,4 @@ COPY njs.js /etc/nginx/conf.d
 # Create Document Images Directory and modify access mode for other users
 RUN mkdir -p /usr/share/nginx/html/document_images
 RUN mkdir -p /usr/share/nginx/html/uploaded_results
+RUN mkdir -p /usr/share/nginx/html/uploaded-files
