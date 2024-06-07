@@ -1,4 +1,4 @@
-FROM nginx:1.23.3-alpine
+FROM nginx:stable-alpine3.19-perl
 
 
 RUN apk update
