@@ -1,4 +1,4 @@
-FROM nginx:1.25.1-alpine
+FROM nginx:1.27.0-alpine-perl
 
 
 RUN apk update
@@ -17,9 +17,9 @@ RUN curl -o /tmp/nginx_signing.rsa.pub https://nginx.org/keys/nginx_signing.rsa.
 # Move the key to apk trusted keys storage
 RUN mv /tmp/nginx_signing.rsa.pub /etc/apk/keys/
 RUN apk add nginx-module-njs@nginx
-COPY default.conf.template /etc/nginx/templates/
-COPY nginx.conf /etc/nginx/nginx.conf
-COPY njs.js /etc/nginx/conf.d
+COPY package/docker/default.conf.template /etc/nginx/templates/
+COPY package/docker/nginx.conf /etc/nginx/nginx.conf
+COPY package/docker/njs.js /etc/nginx/conf.d
 
 # Create Document Images Directory and modify access mode for other users
 RUN mkdir -p /usr/share/nginx/html/document_images
