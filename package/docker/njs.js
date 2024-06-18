@@ -30,7 +30,7 @@ function auth(request) {
 		{ method: "GET" },
 		function (res) {
 			if (res.status === 200) {
-				const jsonData = JSON.parse(res.responseBody)
+				const jsonData = JSON.parse(res.responseText)
 				if (
 					jsonData.authenticated && jsonData.user.privileges &&
 					isAuthorized(jsonData.user.privileges)
