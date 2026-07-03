@@ -1,7 +1,6 @@
-FROM nginx:1.29.3-alpine
+FROM nginx:1.30.3-alpine
 
 RUN apk update
-RUN apk add --no-cache --upgrade openssl
 RUN apk add curl
 
 # Set up the apk repository for stable nginx packages
