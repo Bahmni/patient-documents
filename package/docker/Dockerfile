@@ -1,4 +1,4 @@
-FROM nginx:1.27.1-alpine
+FROM nginx:1.30.3-alpine
 
 RUN apk update
 RUN apk add curl
